@@ -1,4 +1,4 @@
-# ASP.NET MVC CAPTCHA Project
+# ASP.NET MVC CAPTCHA
 
 This is a simple ASP.NET MVC application that includes CAPTCHA functionality for form validation and bot protection. The project uses Entity Framework with existing migrations and MySQL as the database.
 
