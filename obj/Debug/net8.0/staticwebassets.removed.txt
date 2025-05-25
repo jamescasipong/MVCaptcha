@@ -1,0 +1,9 @@
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\wwwroot\images\easy1.png
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\wwwroot\images\easy2.png
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\wwwroot\images\easy3.png
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\wwwroot\images\hard1.png
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\wwwroot\images\hard2.png
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\wwwroot\images\hard3.png
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\wwwroot\images\normal1.png
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\wwwroot\images\normal2.png
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\wwwroot\images\normal3.png

@@ -1,0 +1,52 @@
+@import "variables.less";
+@import "mixins.less";
+
+.result-container {
+    .card-mixin();
+    text-align: center;
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: @text-color;
+    }
+
+    .score-display {
+        font-size: 4rem;
+        font-weight: 700;
+        color: @success-color;
+        margin: 1.5rem 0;
+        line-height: 1;
+        // Dynamic color based on score
+        .low-score & {
+            color: @error-color;
+        }
+    }
+
+    .stats {
+        background: #fff;
+        border: 1px solid @border-color;
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 2rem 0;
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid lighten(@border-color, 5%);
+            }
+
+            strong {
+                color: @secondary-text;
+            }
+        }
+    }
+
+    .btn {
+        .button-mixin();
+    }
+}

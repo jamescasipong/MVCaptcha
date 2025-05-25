@@ -1,0 +1,77 @@
+﻿@using MVCaptcha.Models.ViewModels
+@model CaptchaViewModel
+
+<style>
+    .captcha-container {
+        max-width: 500px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .captcha-image {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        background: #f9f9f9;
+        margin-bottom: 1.5rem;
+    }
+
+    .answer-input {
+        letter-spacing: 0.5em;
+        font-family: monospace;
+        text-transform: uppercase;
+    }
+
+    .progress {
+        height: 25px;
+        margin-bottom: 2rem;
+    }
+
+    .progress-bar {
+        font-weight: bold;
+        line-height: 25px;
+    }
+</style>
+
+<div class="captcha-container">
+    <div class="progress">
+        <div class="progress-bar" style="width: @((Model.CurrentIndex + 1) * 100 / Model.TotalCount)%">
+            Challenge @(Model.CurrentIndex + 1) of @Model.TotalCount
+        </div>
+    </div>
+
+    <img src="@Model.ImageUrl" class="captcha-image img-fluid" alt="Captcha Image">
+
+    <form asp-action="Index" method="post">
+        <input type="hidden" asp-for="SessionId" />
+        <input type="hidden" asp-for="CurrentIndex" />
+
+        <div class="form-group">
+            <label>Enter the code:</label>
+            <input asp-for="Answer" class="form-control answer-input text-center"
+                placeholder="@(new string('_', Model.AnswerLength))" maxlength="@Model.AnswerLength" />
+            <span asp-validation-for="Answer" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mt-4">
+            @(Model.CurrentIndex + 1 == Model.TotalCount ? "Submit" : "Next")
+        </button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Auto-focus input
+            $('.answer-input').focus();
+
+            // Input formatting
+            $('.answer-input').on('input', function () {
+                this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
+            });
+        });
+    </script>
+}

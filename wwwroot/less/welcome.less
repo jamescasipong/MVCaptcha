@@ -1,0 +1,59 @@
+@import "variables.less";
+@import "mixins.less";
+
+.welcome-container {
+    .card-mixin();
+    text-align: center;
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        color: @text-color;
+    }
+
+    .difficulty-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+
+        .difficulty-option {
+            padding: 1.5rem 1rem;
+            background: #fff;
+            border: 1px solid @border-color;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: @transition;
+
+            &:hover {
+                border-color: darken(@border-color, 10%);
+                transform: translateY(-2px);
+            }
+
+            &.active {
+                border-color: @primary-color;
+                background: lighten(@background-color, 2%);
+            }
+
+            i {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+                display: block;
+            }
+
+            div {
+                font-weight: 500;
+                color: darken(@text-color, 10%);
+            }
+        }
+    }
+
+    .btn-start {
+        .button-mixin();
+        width: 100%;
+        border: none;
+        cursor: pointer;
+    }
+}

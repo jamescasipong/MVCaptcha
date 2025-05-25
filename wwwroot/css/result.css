@@ -1,0 +1,69 @@
+.result-container {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 2.5rem;
+  max-width: 480px;
+  margin: 3rem auto;
+  text-align: center;
+}
+.result-container h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+.result-container .score-display {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #10b981;
+  margin: 1.5rem 0;
+  line-height: 1;
+}
+.low-score .result-container .score-display {
+  color: #ef4444;
+}
+.result-container .stats {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 2rem 0;
+}
+.result-container .stats .stat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+}
+.result-container .stats .stat-item:not(:last-child) {
+  border-bottom: 1px solid #f7f7f7;
+}
+.result-container .stats .stat-item strong {
+  color: #666;
+}
+.result-container .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background: #000;
+  color: white;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.result-container .btn:hover {
+  background: #000000;
+  transform: translateY(-1px);
+}
+.result-container .btn i {
+  margin-right: 0.5rem;
+}
+.result-container .btn:hover {
+  background: #000000;
+  transform: translateY(-1px);
+}
+.result-container .btn i {
+  margin-right: 0.5rem;
+}

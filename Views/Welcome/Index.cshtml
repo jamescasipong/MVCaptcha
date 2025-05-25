@@ -1,0 +1,32 @@
+﻿@using MVCaptcha.Models.ViewModels
+@model WelcomeViewModel
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/welcome.css" />
+}
+
+<div class="welcome-container">
+    <h1>CAPTCHA Challenge</h1>
+
+    <form asp-action="Index" method="post">
+        <div class="difficulty-options">
+            @foreach (var level in Model.DifficultyLevels)
+            {
+                <div class="difficulty-option @(level.Selected ? "active" : "")" data-value="@level.Value">
+                    <i class="@level.Icon"></i>
+                    <div>@level.Text</div>
+                </div>
+            }
+        </div>
+
+        <input type="hidden" asp-for="SelectedDifficulty" id="selectedDifficulty" />
+
+        <button type="submit" class="btn-start">
+            <i class="fas fa-play"></i> Start Challenge
+        </button>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/welcome.js" asp-append-version="true"></script>
+}

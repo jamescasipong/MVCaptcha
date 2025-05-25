@@ -1,0 +1,65 @@
+// Variables
+@primary-color: #3498db;
+@danger-color: #e74c3c;
+@success-color: #2ecc71;
+@text-color: #333;
+
+// Mixins
+.placeholder-color(@color) {
+    &::placeholder {
+        color: @color;
+        opacity: 1;
+    }
+}
+
+// Base styles
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: @text-color;
+    background-color: #f8f9fa;
+}
+
+// Captcha-specific styles
+.captcha-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    .captcha-image {
+        border: 2px solid darken(#f8f9fa, 10%);
+        border-radius: 4px;
+        margin-bottom: 1.5rem;
+    }
+
+    .answer-input {
+        letter-spacing: 2px;
+        font-family: monospace;
+        .placeholder-color(#999);
+    }
+}
+
+// Difficulty badges
+.difficulty-badge {
+    &-easy {
+        color: @success-color;
+    }
+
+    &-normal {
+        color: @primary-color;
+    }
+
+    &-hard {
+        color: @danger-color;
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 576px) {
+    .captcha-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
