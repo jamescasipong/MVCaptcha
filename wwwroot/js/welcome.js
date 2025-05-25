@@ -1,4 +1,5 @@
-﻿// welcome.js
+﻿
+
 document.addEventListener('DOMContentLoaded', function () {
     const options = document.querySelectorAll('.difficulty-option');
     const selectedInput = document.getElementById('selectedDifficulty');

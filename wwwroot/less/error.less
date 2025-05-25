@@ -1,0 +1,55 @@
+﻿// npx lessc wwwroot/less/error.less wwwroot/css/error.css
+
+@import "variables.less";
+@import "mixins.less";
+
+.error-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: @background-color;
+}
+
+.error-container {
+    .card-mixin();
+    text-align: center;
+    max-width: 600px;
+
+    .error-icon {
+        font-size: 4rem;
+        color: @error-color;
+        margin-bottom: 1.5rem;
+    }
+
+    .error-status {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: @text-color;
+    }
+
+    .error-message {
+        font-size: 1.25rem;
+        color: @secondary-text;
+        margin-bottom: 2rem;
+    }
+
+    .error-details {
+        margin: 1.5rem 0;
+        color: @secondary-text;
+        font-family: monospace;
+
+        .request-id {
+            background: darken(@background-color, 5%);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+    }
+
+    .btn-home {
+        .button-mixin();
+        margin-top: 1.5rem;
+    }
+}

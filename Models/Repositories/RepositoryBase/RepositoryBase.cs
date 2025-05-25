@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MVCaptcha.Data;
+using MVCaptcha.Exceptions;
 using System.Linq.Expressions;
 
 namespace MVCaptcha.Models.Repositories.RepositoryBase
@@ -11,13 +12,13 @@ namespace MVCaptcha.Models.Repositories.RepositoryBase
 
         public RepositoryBase(AppDataContext context)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _context = context ?? throw new Exception("Database context cannot be null.");
             _dbSet = context.Set<T>();
         }
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _dbSet.FindAsync(id) ?? throw new KeyNotFoundException($"Entity of type {typeof(T).Name} with ID {id} not found.");
+            return await _dbSet.FindAsync(id) ?? throw new NotFoundException($"Entity of type {typeof(T).Name} with ID {id} not found.");
         }
         public async Task<List<T>> GetAllAsync()
         {
@@ -61,7 +62,7 @@ namespace MVCaptcha.Models.Repositories.RepositoryBase
 
             return result.Any()
                 ? result
-                : throw new KeyNotFoundException($"Entity of type {typeof(T).Name} not found with the specified condition.");
+                : throw new NotFoundException($"No entities of type {typeof(T).Name} found matching the provided criteria.");
         }
 
     }

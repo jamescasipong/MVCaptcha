@@ -1,17 +1,30 @@
 ﻿@using MVCaptcha.Models.ViewModels
-<!-- Views/Error/Error.cshtml -->
 @model ErrorViewModel
 
 @{
     ViewData["Title"] = "Error";
 }
 
-<h1 class="text-danger">Error @Model.StatusCode</h1>
-<h2 class="text-danger">@Model.Message</h2>
+<div class="error-wrapper">
+    <div class="error-container">
+        <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h1 class="error-status">Error @Model.StatusCode</h1>
+        <h2 class="error-message">@Model.Message</h2>
 
-@if (Model.ShowRequestId)
-{
-    <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
-    </p>
-}
+        @if (Model.ShowRequestId)
+        {
+            <div class="error-details">
+                <strong>Request ID:</strong>
+                <code class="request-id">@Model.RequestId</code>
+            </div>
+        }
+
+        <a href="/" class="btn-home">
+            <i class="fas fa-arrow-left"></i> Return to Home
+        </a>
+    </div>
+</div>
+
+<link rel="stylesheet" href="~/css/error.css" asp-append-version="true" />

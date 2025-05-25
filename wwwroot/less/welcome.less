@@ -9,37 +9,51 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 1rem; // added padding for small screens
 }
 
 .welcome-container {
     text-align: center;
-    min-width: 1200px;
+    max-width: 1200px; // changed from min-width to max-width for responsiveness
+    width: 100%; // allow it to shrink on smaller screens
+    padding: 0 1rem;
 
     h1 {
         font-size: 3rem;
         font-weight: 800;
         margin-bottom: 2rem;
         color: @text-color;
+
+        @media (max-width: 600px) {
+            font-size: 2rem;
+        }
     }
 
     .welcome-icon {
         width: 6rem;
-        /* Increase this value */
         height: 6rem;
-        /* Increase this value */
         color: @primary-color;
         margin-bottom: 1rem;
+
+        @media (max-width: 600px) {
+            width: 4rem;
+            height: 4rem;
+        }
     }
 
-
     .difficulty-options {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 1rem;
         margin-bottom: 2rem;
         padding: 1rem;
+        // Default: row layout
+        flex-direction: row;
 
         .difficulty-option {
+            flex: 1 1 250px;
+            max-width: 300px;
             padding: 1.5rem 1rem;
             background: @easy-color;
             border: 1px solid @border-color;
@@ -69,12 +83,29 @@
                 color: darken(@text-color, 10%);
             }
         }
+        // Mobile: stack vertically
+        @media (max-width: 480px) {
+            flex-direction: column;
+
+            .difficulty-option {
+                flex: none; // no grow or shrink
+                max-width: 100%;
+                width: 100%;
+            }
+        }
     }
+
 
     .btn-start {
         .button-mixin();
         width: 50%;
+        max-width: 300px;
         border: none;
         cursor: pointer;
+        margin: 0 auto; // center the button
+
+        @media (max-width: 600px) {
+            width: 80%;
+        }
     }
 }

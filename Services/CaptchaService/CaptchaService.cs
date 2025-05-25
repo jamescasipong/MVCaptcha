@@ -57,7 +57,7 @@ namespace MVCaptcha.Services.CaptchaService
             }
 
             if (currentIndex < 0 || currentIndex >= captchaIds.Count)
-                throw new ArgumentOutOfRangeException(nameof(currentIndex), "Invalid captcha index.");
+                throw new BadRequestException("Invalid captcha index.");
 
             var captcha = await _captchaRepository.GetByIdAsync(captchaIds[currentIndex]);
 
@@ -87,7 +87,7 @@ namespace MVCaptcha.Services.CaptchaService
             }
 
             if (currentIndex < 0 || currentIndex >= captchaIds.Count)
-                throw new ArgumentOutOfRangeException(nameof(currentIndex), "Invalid captcha index.");
+                throw new BadRequestException("Invalid captcha index.");
 
             var captcha = await _captchaRepository.GetByIdAsync(captchaIds[currentIndex]);
             bool isCorrect = string.Equals(answer, captcha.CaptchaValue);
