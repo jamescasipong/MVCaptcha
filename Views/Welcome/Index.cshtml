@@ -4,27 +4,33 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/welcome.css" />
 }
+<div class="welcome-wrapper">
+    <div class="welcome-container">
+        <i data-lucide="shield-check" class="welcome-icon"></i>
+        <h1>CAPTCHA Challenge</h1>
+        <p>
+            Prove your humanity through our innovative verification system
+        </p>
 
-<div class="welcome-container">
-    <h1>CAPTCHA Challenge</h1>
+        <form asp-action="Index" method="post">
+            <div class="difficulty-options">
+                @foreach (var level in Model.DifficultyLevels)
+                {
+                    <div class="difficulty-option @(level.Selected ? "active" : "")" data-value="@level.Value">
+                        <i data-lucide="@level.Icon"></i>
 
-    <form asp-action="Index" method="post">
-        <div class="difficulty-options">
-            @foreach (var level in Model.DifficultyLevels)
-            {
-                <div class="difficulty-option @(level.Selected ? "active" : "")" data-value="@level.Value">
-                    <i class="@level.Icon"></i>
-                    <div>@level.Text</div>
-                </div>
-            }
-        </div>
+                        <div>@level.Text</div>
+                    </div>
+                }
+            </div>
 
-        <input type="hidden" asp-for="SelectedDifficulty" id="selectedDifficulty" />
+            <input type="hidden" asp-for="SelectedDifficulty" id="selectedDifficulty" />
 
-        <button type="submit" class="btn-start">
-            <i class="fas fa-play"></i> Start Challenge
-        </button>
-    </form>
+            <button type="submit" class="btn-start">
+                <i class="fas fa-play"></i> Start Challenge
+            </button>
+        </form>
+    </div>
 </div>
 
 @section Scripts {

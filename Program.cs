@@ -22,8 +22,8 @@ builder.Services.AddServices(builder.Configuration);
 builder.Services.AddDataContext(builder.Configuration);
 builder.Services.AddHttpContextAccessor();
 
-var app = builder.Build();
 
+var app = builder.Build();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 // Configure the HTTP request pipeline.

@@ -15,12 +15,9 @@
 
     public class ValidationException : ApiException
     {
-        public Dictionary<string, string[]> Errors { get; }
-
-        public ValidationException(Dictionary<string, string[]> errors)
+        public ValidationException()
             : base("Validation errors occurred", 400)
         {
-            Errors = errors;
         }
     }
 
@@ -28,6 +25,14 @@
     {
         public NotFoundException(string message)
             : base(message, 404)
+        {
+        }
+    }
+
+    public class BadRequestException : ApiException
+    {
+        public BadRequestException(string message)
+            : base(message, 400)
         {
         }
     }

@@ -17,6 +17,11 @@ namespace MVCaptcha.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(int sessionId, int currentIndex = 0)
         {
+            if (sessionId == 0 || sessionId == null)
+            {
+                return RedirectToAction("Index", "Welcome");
+            }
+
             if (await(_captchaService.IsCompleted(sessionId)))
             {
                 // Redirect to result page if session is already completed
@@ -41,13 +46,11 @@ namespace MVCaptcha.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(CaptchaViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
-            // AWAIT the async validation
             var result = await _captchaService.ValidateCaptcha(
                 model.SessionId,
                 model.CurrentIndex,

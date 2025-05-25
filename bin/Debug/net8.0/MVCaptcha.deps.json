@@ -8,22 +8,12 @@
     ".NETCoreApp,Version=v8.0": {
       "MVCaptcha/1.0.0": {
         "dependencies": {
-          "LigerShark.WebOptimizer.Core": "3.0.436",
           "Microsoft.EntityFrameworkCore": "8.0.14",
           "Microsoft.EntityFrameworkCore.Design": "8.0.14",
-          "MySql.EntityFrameworkCore": "9.0.3",
-          "WebCompiler": "1.0.1"
+          "MySql.EntityFrameworkCore": "9.0.3"
         },
         "runtime": {
           "MVCaptcha.dll": {}
-        }
-      },
-      "AjaxMin/5.14.5506.26202": {
-        "runtime": {
-          "lib/net40/AjaxMin.dll": {
-            "assemblyVersion": "5.14.5506.26196",
-            "fileVersion": "5.14.5506.26196"
-          }
         }
       },
       "BouncyCastle.Cryptography/2.5.1": {
@@ -39,14 +29,6 @@
           "lib/net5.0/Google.Protobuf.dll": {
             "assemblyVersion": "3.30.0.0",
             "fileVersion": "3.30.0.0"
-          }
-        }
-      },
-      "HtmlAgilityPack/1.4.9": {
-        "runtime": {
-          "lib/Net45/HtmlAgilityPack.dll": {
-            "assemblyVersion": "1.4.9.0",
-            "fileVersion": "1.4.9.0"
           }
         }
       },
@@ -84,17 +66,6 @@
           "lib/net6.0/K4os.Hash.xxHash.dll": {
             "assemblyVersion": "1.0.8.0",
             "fileVersion": "1.0.8.0"
-          }
-        }
-      },
-      "LigerShark.WebOptimizer.Core/3.0.436": {
-        "dependencies": {
-          "NUglify": "1.21.15"
-        },
-        "runtime": {
-          "lib/net8.0/WebOptimizer.Core.dll": {
-            "assemblyVersion": "3.0.436.0",
-            "fileVersion": "3.0.436.0"
           }
         }
       },
@@ -542,14 +513,6 @@
           }
         }
       },
-      "NUglify/1.21.15": {
-        "runtime": {
-          "lib/net5.0/NUglify.dll": {
-            "assemblyVersion": "1.21.15.0",
-            "fileVersion": "1.21.15.0"
-          }
-        }
-      },
       "System.Buffers/4.5.1": {},
       "System.CodeDom/4.4.0": {
         "runtime": {
@@ -770,18 +733,6 @@
           }
         }
       },
-      "WebCompiler/1.0.1": {
-        "dependencies": {
-          "AjaxMin": "5.14.5506.26202",
-          "HtmlAgilityPack": "1.4.9"
-        },
-        "runtime": {
-          "lib/WebCompiler.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
       "ZstdSharp.Port/0.8.5": {
         "runtime": {
           "lib/net8.0/ZstdSharp.dll": {
@@ -798,13 +749,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "AjaxMin/5.14.5506.26202": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-ayrhrlFSQEAw+1w7cdUGozbZ8BxakITQcTezeLKByp69zk0tdto8/Jt3U2ieCq3U1dlvwXGvlthMaTJXeHEaFw==",
-      "path": "ajaxmin/5.14.5506.26202",
-      "hashPath": "ajaxmin.5.14.5506.26202.nupkg.sha512"
-    },
     "BouncyCastle.Cryptography/2.5.1": {
       "type": "package",
       "serviceable": true,
@@ -818,13 +762,6 @@
       "sha512": "sha512-ZnEI4oZWnHvd+Yz5Gcnx5Q5RQIuzptIzd0fmxAN8f81FYHI0USZqMOrPTkrsd/QEzo9vl2b217v9FqFgHfufQw==",
       "path": "google.protobuf/3.30.0",
       "hashPath": "google.protobuf.3.30.0.nupkg.sha512"
-    },
-    "HtmlAgilityPack/1.4.9": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-anZIsi7bbHZ35ZZzvCA+gVWC/mEXVhcJjJvxr3wzUEDsOE4uk0Fa0ZiaxVn83AZpVKVO4RHyqamPkzzJbMUgmQ==",
-      "path": "htmlagilitypack/1.4.9",
-      "hashPath": "htmlagilitypack.1.4.9.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
@@ -853,13 +790,6 @@
       "sha512": "sha512-Wp2F7BamQ2Q/7Hk834nV9vRQapgcr8kgv9Jvfm8J3D0IhDqZMMl+a2yxUq5ltJitvXvQfB8W6K4F4fCbw/P6YQ==",
       "path": "k4os.hash.xxhash/1.0.8",
       "hashPath": "k4os.hash.xxhash.1.0.8.nupkg.sha512"
-    },
-    "LigerShark.WebOptimizer.Core/3.0.436": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Nvz10YHpIFilkTNWPdhIXXEBnBXPGG0ngmuCAFIwQ/HJC8ip1/yycgzWdLDehWqfMkd+N27jRL5Z2UBfABzH4w==",
-      "path": "ligershark.weboptimizer.core/3.0.436",
-      "hashPath": "ligershark.weboptimizer.core.3.0.436.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
       "type": "package",
@@ -1042,13 +972,6 @@
       "sha512": "sha512-xtWL0Kglhpl5FuK8/iDjHL6Z954fpr8Hi11nyuIEjClGX61zD6tVUtlbaAReiGSYhtBZAXEG5O7FYKy44QzhFw==",
       "path": "mysql.entityframeworkcore/9.0.3",
       "hashPath": "mysql.entityframeworkcore.9.0.3.nupkg.sha512"
-    },
-    "NUglify/1.21.15": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Vxwg0EjbM/gmILPtzfmzlf0MDu9a17OQb8b57oTgoHoRsZNHWIFQFa00Izcvuam3Hbw2eH272TfczDRHSXgSlA==",
-      "path": "nuglify/1.21.15",
-      "hashPath": "nuglify.1.21.15.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",
@@ -1259,13 +1182,6 @@
       "sha512": "sha512-Obg3a90MkOw9mYKxrardLpY2u0axDMrSmy4JCdq2cYbelM2cUwmUir5Bomvd1yxmPL9h5LVHU1tuKBZpUjfASg==",
       "path": "system.windows.extensions/8.0.0",
       "hashPath": "system.windows.extensions.8.0.0.nupkg.sha512"
-    },
-    "WebCompiler/1.0.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-CmF2lXuwPrXocH2bgaB5RxkxR4phakfFt7w9clxrDqiFMDbqRuKZQQ/X2Rflrvep8BcVIZCLrIdTVEimRBlF+Q==",
-      "path": "webcompiler/1.0.1",
-      "hashPath": "webcompiler.1.0.1.nupkg.sha512"
     },
     "ZstdSharp.Port/0.8.5": {
       "type": "package",

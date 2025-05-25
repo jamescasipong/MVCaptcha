@@ -1,6 +1,8 @@
 @import "variables.less";
 @import "mixins.less";
 
+// npx lessc wwwroot/less/result.less wwwroot/css/result.css
+
 .result-container {
     .card-mixin();
     text-align: center;
@@ -18,6 +20,7 @@
         color: @success-color;
         margin: 1.5rem 0;
         line-height: 1;
+
         // Dynamic color based on score
         .low-score & {
             color: @error-color;

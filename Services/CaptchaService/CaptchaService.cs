@@ -1,4 +1,5 @@
-﻿using MVCaptcha.Models.Entities;
+﻿using MVCaptcha.Exceptions;
+using MVCaptcha.Models.Entities;
 using MVCaptcha.Models.Repositories.CaptchaRepository;
 using MVCaptcha.Models.Repositories.SessionRepository;
 using MVCaptcha.Models.ViewModels;
@@ -76,10 +77,9 @@ namespace MVCaptcha.Services.CaptchaService
         {
             if (!_sessionCaptchas.TryGetValue(sessionId, out var captchaIds))
             {
-                // Recover by fetching and re-caching the session
                 var session = await _sessionRepository.GetByIdAsync(sessionId);
                 if (session == null)
-                    throw new InvalidOperationException("Session not found.");
+                    throw new NotFoundException("Session not found.");
 
                 var captchas = await _captchaRepository.GetByDifficulty(session.Difficulty);
                 captchaIds = captchas.Select(c => c.Id).ToList();
@@ -90,7 +90,7 @@ namespace MVCaptcha.Services.CaptchaService
                 throw new ArgumentOutOfRangeException(nameof(currentIndex), "Invalid captcha index.");
 
             var captcha = await _captchaRepository.GetByIdAsync(captchaIds[currentIndex]);
-            bool isCorrect = string.Equals(answer, captcha.CaptchaValue, StringComparison.OrdinalIgnoreCase);
+            bool isCorrect = string.Equals(answer, captcha.CaptchaValue);
 
             _httpContextAccessor.HttpContext?.Session.SetInt32($"Captcha_{sessionId}_{currentIndex}", isCorrect ? 1 : 0);
 

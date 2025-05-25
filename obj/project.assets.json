@@ -2,15 +2,6 @@
   "version": 3,
   "targets": {
     "net8.0": {
-      "AjaxMin/5.14.5506.26202": {
-        "type": "package",
-        "compile": {
-          "lib/net40/AjaxMin.dll": {}
-        },
-        "runtime": {
-          "lib/net40/AjaxMin.dll": {}
-        }
-      },
       "BouncyCastle.Cryptography/2.5.1": {
         "type": "package",
         "compile": {
@@ -34,19 +25,6 @@
         "runtime": {
           "lib/net5.0/Google.Protobuf.dll": {
             "related": ".pdb;.xml"
-          }
-        }
-      },
-      "HtmlAgilityPack/1.4.9": {
-        "type": "package",
-        "compile": {
-          "lib/Net45/HtmlAgilityPack.dll": {
-            "related": ".pdb;.XML"
-          }
-        },
-        "runtime": {
-          "lib/Net45/HtmlAgilityPack.dll": {
-            "related": ".pdb;.XML"
           }
         }
       },
@@ -105,29 +83,6 @@
           "lib/net6.0/K4os.Hash.xxHash.dll": {
             "related": ".xml"
           }
-        }
-      },
-      "LigerShark.WebOptimizer.Core/3.0.436": {
-        "type": "package",
-        "dependencies": {
-          "NUglify": "1.21.15"
-        },
-        "compile": {
-          "lib/net8.0/WebOptimizer.Core.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/WebOptimizer.Core.dll": {
-            "related": ".xml"
-          }
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ],
-        "build": {
-          "build/LigerShark.WebOptimizer.Core.props": {},
-          "build/LigerShark.WebOptimizer.Core.targets": {}
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
@@ -759,19 +714,6 @@
           }
         }
       },
-      "NUglify/1.21.15": {
-        "type": "package",
-        "compile": {
-          "lib/net5.0/NUglify.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net5.0/NUglify.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.Buffers/4.5.1": {
         "type": "package",
         "compile": {
@@ -1268,19 +1210,6 @@
           }
         }
       },
-      "WebCompiler/1.0.1": {
-        "type": "package",
-        "dependencies": {
-          "AjaxMin": "5.14.5506.26202",
-          "HtmlAgilityPack": "1.4.9"
-        },
-        "compile": {
-          "lib/WebCompiler.dll": {}
-        },
-        "runtime": {
-          "lib/WebCompiler.dll": {}
-        }
-      },
       "ZstdSharp.Port/0.8.5": {
         "type": "package",
         "compile": {
@@ -1293,27 +1222,6 @@
     }
   },
   "libraries": {
-    "AjaxMin/5.14.5506.26202": {
-      "sha512": "ayrhrlFSQEAw+1w7cdUGozbZ8BxakITQcTezeLKByp69zk0tdto8/Jt3U2ieCq3U1dlvwXGvlthMaTJXeHEaFw==",
-      "type": "package",
-      "path": "ajaxmin/5.14.5506.26202",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "ajaxmin.5.14.5506.26202.nupkg.sha512",
-        "ajaxmin.nuspec",
-        "lib/net20/AjaxMin.dll",
-        "lib/net35/AjaxMin.dll",
-        "lib/net40/AjaxMin.dll",
-        "tools/net35/AjaxMin.dll",
-        "tools/net35/AjaxMin.targets",
-        "tools/net35/AjaxMinTask.dll",
-        "tools/net40/AjaxMin.dll",
-        "tools/net40/AjaxMin.targets",
-        "tools/net40/AjaxMinTask.dll"
-      ]
-    },
     "BouncyCastle.Cryptography/2.5.1": {
       "sha512": "zy8TMeTP+1FH2NrLaNZtdRbBdq7u5MI+NFZQOBSM69u5RFkciinwzV2eveY6Kjf5MzgsYvvl6kTStsj3JrXqkg==",
       "type": "package",
@@ -1355,46 +1263,6 @@
         "lib/netstandard2.0/Google.Protobuf.dll",
         "lib/netstandard2.0/Google.Protobuf.pdb",
         "lib/netstandard2.0/Google.Protobuf.xml"
-      ]
-    },
-    "HtmlAgilityPack/1.4.9": {
-      "sha512": "anZIsi7bbHZ35ZZzvCA+gVWC/mEXVhcJjJvxr3wzUEDsOE4uk0Fa0ZiaxVn83AZpVKVO4RHyqamPkzzJbMUgmQ==",
-      "type": "package",
-      "path": "htmlagilitypack/1.4.9",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "HAPIcon.png",
-        "htmlagilitypack.1.4.9.nupkg.sha512",
-        "htmlagilitypack.nuspec",
-        "lib/Net20/HtmlAgilityPack.dll",
-        "lib/Net20/HtmlAgilityPack.pdb",
-        "lib/Net20/HtmlAgilityPack.xml",
-        "lib/Net40-client/HtmlAgilityPack.dll",
-        "lib/Net40-client/HtmlAgilityPack.pdb",
-        "lib/Net40-client/HtmlAgilityPack.xml",
-        "lib/Net40/HtmlAgilityPack.XML",
-        "lib/Net40/HtmlAgilityPack.dll",
-        "lib/Net40/HtmlAgilityPack.pdb",
-        "lib/Net45/HtmlAgilityPack.XML",
-        "lib/Net45/HtmlAgilityPack.dll",
-        "lib/Net45/HtmlAgilityPack.pdb",
-        "lib/NetCore45/HtmlAgilityPack.dll",
-        "lib/NetCore45/HtmlAgilityPack.pdb",
-        "lib/NetCore45/HtmlAgilityPack.pri",
-        "lib/NetCore45/HtmlAgilityPack.xml",
-        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
-        "lib/portable-net45+netcore45+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
-        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.dll",
-        "lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch/HtmlAgilityPack.pdb",
-        "lib/sl3-wp/_._",
-        "lib/sl4/HtmlAgilityPack.XML",
-        "lib/sl4/HtmlAgilityPack.dll",
-        "lib/sl4/HtmlAgilityPack.pdb",
-        "lib/sl5/HtmlAgilityPack.XML",
-        "lib/sl5/HtmlAgilityPack.dll",
-        "lib/sl5/HtmlAgilityPack.pdb",
-        "readme.txt"
       ]
     },
     "Humanizer.Core/2.14.1": {
@@ -1476,25 +1344,6 @@
         "lib/netstandard2.0/K4os.Hash.xxHash.xml",
         "lib/netstandard2.1/K4os.Hash.xxHash.dll",
         "lib/netstandard2.1/K4os.Hash.xxHash.xml"
-      ]
-    },
-    "LigerShark.WebOptimizer.Core/3.0.436": {
-      "sha512": "Nvz10YHpIFilkTNWPdhIXXEBnBXPGG0ngmuCAFIwQ/HJC8ip1/yycgzWdLDehWqfMkd+N27jRL5Z2UBfABzH4w==",
-      "type": "package",
-      "path": "ligershark.weboptimizer.core/3.0.436",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "build/LigerShark.WebOptimizer.Core.props",
-        "build/LigerShark.WebOptimizer.Core.targets",
-        "lib/net6.0/WebOptimizer.Core.dll",
-        "lib/net6.0/WebOptimizer.Core.xml",
-        "lib/net8.0/WebOptimizer.Core.dll",
-        "lib/net8.0/WebOptimizer.Core.xml",
-        "ligershark.weboptimizer.core.3.0.436.nupkg.sha512",
-        "ligershark.weboptimizer.core.nuspec",
-        "logo.png"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
@@ -2484,28 +2333,6 @@
         "logo-mysql-170x115.png",
         "mysql.entityframeworkcore.9.0.3.nupkg.sha512",
         "mysql.entityframeworkcore.nuspec"
-      ]
-    },
-    "NUglify/1.21.15": {
-      "sha512": "Vxwg0EjbM/gmILPtzfmzlf0MDu9a17OQb8b57oTgoHoRsZNHWIFQFa00Izcvuam3Hbw2eH272TfczDRHSXgSlA==",
-      "type": "package",
-      "path": "nuglify/1.21.15",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net35/NUglify.dll",
-        "lib/net35/NUglify.xml",
-        "lib/net40/NUglify.dll",
-        "lib/net40/NUglify.xml",
-        "lib/net5.0/NUglify.dll",
-        "lib/net5.0/NUglify.xml",
-        "lib/netstandard1.3/NUglify.dll",
-        "lib/netstandard1.3/NUglify.xml",
-        "lib/netstandard2.0/NUglify.dll",
-        "lib/netstandard2.0/NUglify.xml",
-        "nuglify.1.21.15.nupkg.sha512",
-        "nuglify.nuspec",
-        "nuglify.png"
       ]
     },
     "System.Buffers/4.5.1": {
@@ -3669,19 +3496,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "WebCompiler/1.0.1": {
-      "sha512": "CmF2lXuwPrXocH2bgaB5RxkxR4phakfFt7w9clxrDqiFMDbqRuKZQQ/X2Rflrvep8BcVIZCLrIdTVEimRBlF+Q==",
-      "type": "package",
-      "path": "webcompiler/1.0.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/WebCompiler.dll",
-        "lib/WebCompiler.pdb",
-        "webcompiler.1.0.1.nupkg.sha512",
-        "webcompiler.nuspec"
-      ]
-    },
     "ZstdSharp.Port/0.8.5": {
       "sha512": "TR4j17WeVSEb3ncgL2NqlXEqcy04I+Kk9CaebNDplUeL8XOgjkZ7fP4Wg4grBdPLIqsV86p2QaXTkZoRMVOsew==",
       "type": "package",
@@ -3705,11 +3519,9 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "LigerShark.WebOptimizer.Core >= 3.0.436",
       "Microsoft.EntityFrameworkCore >= 8.0.14",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.14",
-      "MySql.EntityFrameworkCore >= 9.0.3",
-      "WebCompiler >= 1.0.1"
+      "MySql.EntityFrameworkCore >= 9.0.3"
     ]
   },
   "packageFolders": {
@@ -3719,11 +3531,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\james\\source\\repos\\MVCaptcha\\MVCaptcha\\MVCaptcha.csproj",
+      "projectUniqueName": "C:\\Users\\james\\source\\repos\\MVCaptcha\\mvcaptcha\\MVCaptcha.csproj",
       "projectName": "MVCaptcha",
-      "projectPath": "C:\\Users\\james\\source\\repos\\MVCaptcha\\MVCaptcha\\MVCaptcha.csproj",
+      "projectPath": "C:\\Users\\james\\source\\repos\\MVCaptcha\\mvcaptcha\\MVCaptcha.csproj",
       "packagesPath": "C:\\Users\\james\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\james\\source\\repos\\MVCaptcha\\MVCaptcha\\obj\\",
+      "outputPath": "C:\\Users\\james\\source\\repos\\MVCaptcha\\mvcaptcha\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3762,10 +3574,6 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
-          "LigerShark.WebOptimizer.Core": {
-            "target": "Package",
-            "version": "[3.0.436, )"
-          },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "[8.0.14, )"
@@ -3779,10 +3587,6 @@
           "MySql.EntityFrameworkCore": {
             "target": "Package",
             "version": "[9.0.3, )"
-          },
-          "WebCompiler": {
-            "target": "Package",
-            "version": "[1.0.1, )"
           }
         },
         "imports": [
@@ -3807,37 +3611,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'AjaxMin 5.14.5506.26202' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
-      "libraryId": "AjaxMin",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'HtmlAgilityPack 1.4.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
-      "libraryId": "HtmlAgilityPack",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'WebCompiler 1.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
-      "libraryId": "WebCompiler",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }

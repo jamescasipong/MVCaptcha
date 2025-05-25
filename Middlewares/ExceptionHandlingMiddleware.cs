@@ -53,7 +53,6 @@ namespace MVCaptcha.Middlewares
             if (exception is ValidationException validationEx)
             {
                 response.StatusCode = validationEx.StatusCode;
-                errorResponse.Errors = validationEx.Errors;
             }
             else if (exception is NotFoundException)
             {

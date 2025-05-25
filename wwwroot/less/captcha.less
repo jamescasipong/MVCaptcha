@@ -1,72 +1,109 @@
+// npx lessc wwwroot/less/captcha.less wwwroot/css/captcha.css
+
 @import "variables.less";
 
-.captcha-container {
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: #fff;
-    border: 1px solid @border-color;
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f9fafb;
+    padding: 1rem;
+}
+
+
+.captcha-minimal {
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: white;
     border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
 
-    .progress {
-        height: 8px;
-        background: @background-color;
-        border-radius: 4px;
-        margin-bottom: 2rem;
-        overflow: hidden;
-
-        &-bar {
-            height: 100%;
-            background: @primary-color;
-            color: white;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: width 0.3s ease;
-        }
-    }
-
-    .captcha-image {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        margin-bottom: 1.5rem;
-        border: 1px solid @border-color;
-    }
-
-    .form-group {
+    .captcha-header {
         margin-bottom: 1.5rem;
 
-        label {
-            display: block;
+        svg {
+            width: 40px;
+            height: 40px;
+            color: #3b82f6;
             margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: @text-color;
         }
 
-        .answer-input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid @border-color;
-            border-radius: 6px;
+        h2 {
             font-size: 1.25rem;
-            letter-spacing: 0.1em;
-            text-align: center;
-            transition: border-color 0.2s ease;
+            font-weight: 600;
+            margin: 0.25rem 0;
+        }
 
-            &:focus {
-                outline: none;
-                border-color: @primary-color;
-                box-shadow: 0 0 0 2px fade(@primary-color, 20%);
+        p {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin: 0;
+        }
+    }
+
+    .captcha-body {
+        .captcha-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+
+            .captcha-input {
+                width: 100%;
+                padding: 0.75rem;
+                font-size: 1.125rem;
+                letter-spacing: 0.25em;
+                text-align: center;
+                border: 2px solid #e5e7eb;
+                border-radius: 8px;
+                font-family: monospace;
+                font-weight: 600;
+                transition: border 0.2s;
+
+                &:focus {
+                    outline: none;
+                    border-color: #3b82f6;
+                    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+                }
+
+                &.error {
+                    border-color: #ef4444;
+                }
+            }
+
+            .error-message {
+                display: block;
+                margin-top: 0.5rem;
+                color: #ef4444;
+                font-size: 0.875rem;
             }
         }
-    }
 
-    .btn {
-        .button-mixin();
-        width: 100%;
-        font-size: 1rem;
+        .submit-btn {
+            .button-mixin();
+            width: 100%;
+
+            &:disabled {
+                background: #9ca3af;
+                cursor: not-allowed;
+            }
+
+            svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
     }
 }
