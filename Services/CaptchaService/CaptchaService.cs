@@ -14,36 +14,36 @@ namespace MVCaptcha.Services.CaptchaService
         private readonly ISessionRepository _sessionRepository;
         private readonly ConcurrentDictionary<int, List<int>> _sessionCaptchas = new();
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ITokenService _tokenService;
         private readonly ILogger<CaptchaService> _logger;
 
-        public CaptchaService(ICaptchaRepository captchaRepository, ISessionRepository sessionRepository, IHttpContextAccessor httpContextAccessor, ILogger<CaptchaService> logger)
+        public CaptchaService(ICaptchaRepository captchaRepository, ISessionRepository sessionRepository, IHttpContextAccessor httpContextAccessor, ITokenService tokenService, ILogger<CaptchaService> logger)
         {
             _captchaRepository = captchaRepository;
             _sessionRepository = sessionRepository;
             _httpContextAccessor = httpContextAccessor;
             _logger = logger;
+            _tokenService = tokenService;
         }
 
-        public async Task<int> StartSession(string difficulty, HttpContext httpContext)
+        public async Task<string> StartSessionToken(string difficulty)
         {
             if (string.IsNullOrWhiteSpace(difficulty))
                 throw new ArgumentException("Difficulty must be provided", nameof(difficulty));
 
-            // 1. Save the session to DB
             var sessionId = await _sessionRepository.CreateSession(difficulty);
 
-            // 2. Store session ID in the user’s HTTP session
-            httpContext.Session.SetInt32("SessionId", sessionId);
-
-            // 3. Optionally: preload captchas for this session (without answers)
+            // Prepare captcha IDs
             var captchas = await _captchaRepository.GetByDifficulty(difficulty);
             var captchaIds = captchas.Select(c => c.Id).ToList();
-
-            // Store them securely in memory (can be moved to DB if needed)
             _sessionCaptchas[sessionId] = captchaIds;
 
-            return sessionId;
+            // Generate JWT token with sessionId and starting index = 0
+            var token = _tokenService.GenerateToken(sessionId, 0);
+
+            return token;
         }
+
 
         public async Task<CaptchaViewModel> GetNextCaptcha(int sessionId, int currentIndex)
         {
@@ -134,7 +134,7 @@ namespace MVCaptcha.Services.CaptchaService
 
         public async Task<bool> IsCompleted(int sessionId)
         {
-            var session = await  _sessionRepository.GetByIdAsync(sessionId);
+            var session = await _sessionRepository.GetByIdAsync(sessionId);
 
             if (session.DateTimeEnded == null)
             {
@@ -159,6 +159,8 @@ namespace MVCaptcha.Services.CaptchaService
                 return null;
             }
         }
+
+
     }
 
 }

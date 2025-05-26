@@ -20,6 +20,8 @@
         <form asp-action="Index" method="post" id="captchaForm">
             <input type="hidden" asp-for="SessionId" />
             <input type="hidden" asp-for="CurrentIndex" />
+            <input type="hidden" asp-for="Token" />
+
 
             <div class="input-group">
                 <label for="Answer" class="captcha-label">Enter code</label>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVCaptcha.Attributes;
 using MVCaptcha.Models.ViewModels;
+using MVCaptcha.Services;
 using MVCaptcha.Services.CaptchaService;
 
 namespace MVCaptcha.Controllers
@@ -8,62 +9,68 @@ namespace MVCaptcha.Controllers
     public class CaptchaController : Controller
     {
         private readonly ICaptchaService _captchaService;
+        private readonly ITokenService _tokenService;
+        private ILogger<CaptchaController> _logger;
 
-        public CaptchaController(ICaptchaService captchaService)
+        public CaptchaController(ICaptchaService captchaService, ITokenService tokenService, ILogger<CaptchaController> logger)
         {
             _captchaService = captchaService;
+            _tokenService = tokenService;
+            _logger = logger;
         }
 
+
         [HttpGet]
-        public async Task<IActionResult> Index(int sessionId, int currentIndex = 0)
+        public async Task<IActionResult> Index(string token)
         {
-            if (sessionId == 0 || sessionId == null)
+            if (!_tokenService.ValidateToken(token, out int sessionId, out int currentIndex))
             {
                 return RedirectToAction("Index", "Welcome");
             }
 
-            if (await (_captchaService.IsCompleted(sessionId)))
+            if (await _captchaService.IsCompleted(sessionId))
             {
-                // Redirect to result page if session is already completed
                 return RedirectToAction("Index", "Result", new { sessionId });
             }
 
             var session = await _captchaService.GetSessionId(sessionId);
-
             if (session == null)
             {
-                // If session is not found, redirect to welcome page
                 return RedirectToAction("Index", "Welcome");
             }
 
-            // AWAIT the async operation to get the actual model
             var model = await _captchaService.GetNextCaptcha(sessionId, currentIndex);
-
             if (model == null)
+            {
                 return RedirectToAction("Index", "Result", new { sessionId });
+            }
+
+            model.Token = token; // store token in the model for POST
 
             return View(model);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Index(CaptchaViewModel model)
         {
-            if (!ModelState.IsValid)
-                return View(model);
+            if (!_tokenService.ValidateToken(model.Token, out int sessionId, out int currentIndex))
+            {
+                _logger.LogWarning("Invalid model state or token validation failed. Redirecting to Welcome page.");
+                return RedirectToAction("Index", "Welcome");
+            }
 
-            var result = await _captchaService.ValidateCaptcha(
-                model.SessionId,
-                model.CurrentIndex,
-                model.Answer);
+            var result = await _captchaService.ValidateCaptcha(sessionId, currentIndex, model.Answer);
 
             if (result.isComplete)
-                return RedirectToAction("Index", "Result", new { sessionId = model.SessionId });
+                return RedirectToAction("Index", "Result", new { sessionId });
 
-            return RedirectToAction("Index", new
-            {
-                sessionId = model.SessionId,
-                currentIndex = model.CurrentIndex + 1
-            });
+            // Generate a new token with the updated index
+            string token = _tokenService.GenerateToken(sessionId, currentIndex + 1);
+
+            return RedirectToAction("Index", new { token });
+
         }
+
     }
 }

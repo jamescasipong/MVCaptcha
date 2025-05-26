@@ -5,7 +5,7 @@ namespace MVCaptcha.Services.CaptchaService
 {
     public interface ICaptchaService
     {
-        Task<int> StartSession(string difficulty, HttpContext context);
+        Task<string> StartSessionToken(string difficulty);
         Task<Session> GetSessionId(int sessionId);
         Task<CaptchaViewModel> GetNextCaptcha(int sessionId, int currentIndex);
         Task<(bool isValid, bool isComplete)> ValidateCaptcha(int sessionId, int currentIndex, string answer);

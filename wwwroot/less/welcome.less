@@ -9,13 +9,13 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 1rem; // added padding for small screens
+    padding: 1rem;
 }
 
 .welcome-container {
     text-align: center;
-    max-width: 1200px; // changed from min-width to max-width for responsiveness
-    width: 100%; // allow it to shrink on smaller screens
+    max-width: 1200px;
+    width: 100%;
     padding: 0 1rem;
 
     h1 {
@@ -83,6 +83,7 @@
                 color: darken(@text-color, 10%);
             }
         }
+
         // Mobile: stack vertically
         @media (max-width: 480px) {
             flex-direction: column;
@@ -94,7 +95,6 @@
             }
         }
     }
-
 
     .btn-start {
         .button-mixin();

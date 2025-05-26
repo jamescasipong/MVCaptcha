@@ -28,8 +28,8 @@ namespace MVCaptcha.Controllers
         [ValidateModel]
         public async Task<IActionResult> Index(WelcomeViewModel model)
         {
-            var sessionId = await _captchaService.StartSession(model.SelectedDifficulty!, HttpContext);
-            return RedirectToAction("Index", "Captcha", new { sessionId });
+            var token = await _captchaService.StartSessionToken(model.SelectedDifficulty!);
+            return RedirectToAction("Index", "Captcha", new { token });
         }
     }
 }

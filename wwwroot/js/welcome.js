@@ -4,7 +4,7 @@
 
     // Set initial active class
     $options.each(function () {
-        if ($(this).data('value') === ($selectedInput.val() || 'E')) {
+        if ($(this).data('value') === ($selectedInput.val() || 'N')) {
             $(this).addClass('active');
         }
     });

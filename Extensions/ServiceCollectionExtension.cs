@@ -4,6 +4,7 @@ using MVCaptcha.Configs;
 using MVCaptcha.Data;
 using MVCaptcha.Models.Repositories.CaptchaRepository;
 using MVCaptcha.Models.Repositories.SessionRepository;
+using MVCaptcha.Services;
 using MVCaptcha.Services.CaptchaService;
 
 namespace MVCaptcha.Extensions
@@ -30,10 +31,10 @@ namespace MVCaptcha.Extensions
 
         public static void AddConfigSettings(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
 
             services.Configure<DatabaseSettings>(configuration.GetSection("AppSettings:Database"));
             services.Configure<CaptchaSettings>(configuration.GetSection("AppSettings:Captcha"));
+            services.Configure<JwtSettings>(configuration.GetSection("AppSettings:JwtSettings"));
         }
 
         public static void AddRepositories(this IServiceCollection services, IConfiguration configuration)
@@ -45,6 +46,7 @@ namespace MVCaptcha.Extensions
         public static void AddServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<ICaptchaService, CaptchaService>();
+            services.AddScoped<ITokenService, TokenService>();
         }
     }
 }

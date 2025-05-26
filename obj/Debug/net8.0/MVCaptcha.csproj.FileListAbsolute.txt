@@ -130,3 +130,9 @@ C:\Users\james\source\repos\MVCaptcha\MVCaptcha\obj\Debug\net8.0\staticwebassets
 C:\Users\james\source\repos\MVCaptcha\MVCaptcha\obj\Debug\net8.0\MVCaptcha.csproj.Up2Date
 C:\Users\james\source\repos\MVCaptcha\MVCaptcha\obj\Debug\net8.0\MVCaptcha.genruntimeconfig.cache
 C:\Users\james\source\repos\MVCaptcha\MVCaptcha\obj\Debug\net8.0\ref\MVCaptcha.dll
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\james\source\repos\MVCaptcha\MVCaptcha\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
