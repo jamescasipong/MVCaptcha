@@ -5,6 +5,7 @@ using MVCaptcha.Data;
 using MVCaptcha.Models.Repositories.CaptchaRepository;
 using MVCaptcha.Models.Repositories.SessionRepository;
 using MVCaptcha.Services;
+using MVCaptcha.Services.Background;
 using MVCaptcha.Services.CaptchaService;
 
 namespace MVCaptcha.Extensions
@@ -45,6 +46,8 @@ namespace MVCaptcha.Extensions
 
         public static void AddServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddHostedService<SessionCleanupService>();
+
             services.AddScoped<ICaptchaService, CaptchaService>();
             services.AddScoped<ITokenService, TokenService>();
         }
