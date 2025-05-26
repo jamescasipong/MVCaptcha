@@ -7,51 +7,51 @@ using System.Collections.Concurrent;
 
 namespace MVCaptcha.Services.CaptchaService
 {
-    // Services/CaptchaService.cs
     public class CaptchaService : ICaptchaService
     {
         private readonly ICaptchaRepository _captchaRepository;
         private readonly ISessionRepository _sessionRepository;
-        private readonly ConcurrentDictionary<int, List<int>> _sessionCaptchas = new();
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ITokenService _tokenService;
         private readonly ILogger<CaptchaService> _logger;
 
-        public CaptchaService(ICaptchaRepository captchaRepository, ISessionRepository sessionRepository, IHttpContextAccessor httpContextAccessor, ITokenService tokenService, ILogger<CaptchaService> logger)
+        // In-memory state
+        private readonly ConcurrentDictionary<int, List<int>> _sessionCaptchas = new();
+        private readonly ConcurrentDictionary<int, Dictionary<int, bool>> _captchaAnswers = new();
+
+        public CaptchaService(
+            ICaptchaRepository captchaRepository,
+            ISessionRepository sessionRepository,
+            ITokenService tokenService,
+            ILogger<CaptchaService> logger)
         {
             _captchaRepository = captchaRepository;
             _sessionRepository = sessionRepository;
-            _httpContextAccessor = httpContextAccessor;
-            _logger = logger;
             _tokenService = tokenService;
+            _logger = logger;
         }
 
         public async Task<string> StartSessionToken(string difficulty)
         {
             if (string.IsNullOrWhiteSpace(difficulty))
-                throw new ArgumentException("Difficulty must be provided", nameof(difficulty));
+                throw new BadRequestException("Difficulty must be provided");
 
             var sessionId = await _sessionRepository.CreateSession(difficulty);
-
-            // Prepare captcha IDs
             var captchas = await _captchaRepository.GetByDifficulty(difficulty);
             var captchaIds = captchas.Select(c => c.Id).ToList();
+
             _sessionCaptchas[sessionId] = captchaIds;
+            _captchaAnswers[sessionId] = new Dictionary<int, bool>();
 
-            // Generate JWT token with sessionId and starting index = 0
             var token = _tokenService.GenerateToken(sessionId, 0);
-
             return token;
         }
-
 
         public async Task<CaptchaViewModel> GetNextCaptcha(int sessionId, int currentIndex)
         {
             if (!_sessionCaptchas.TryGetValue(sessionId, out var captchaIds))
             {
-                var session = await _sessionRepository.GetByIdAsync(sessionId); // assuming this is async too
+                var session = await _sessionRepository.GetByIdAsync(sessionId);
                 var captchas = await _captchaRepository.GetByDifficulty(session.Difficulty);
-
                 captchaIds = captchas.Select(c => c.Id).ToList();
                 _sessionCaptchas[sessionId] = captchaIds;
             }
@@ -60,7 +60,6 @@ namespace MVCaptcha.Services.CaptchaService
                 throw new BadRequestException("Invalid captcha index.");
 
             var captcha = await _captchaRepository.GetByIdAsync(captchaIds[currentIndex]);
-
 
             return new CaptchaViewModel
             {
@@ -71,7 +70,6 @@ namespace MVCaptcha.Services.CaptchaService
                 AnswerLength = captcha.CaptchaValue.Length
             };
         }
-
 
         public async Task<(bool isValid, bool isComplete)> ValidateCaptcha(int sessionId, int currentIndex, string answer)
         {
@@ -92,25 +90,26 @@ namespace MVCaptcha.Services.CaptchaService
             var captcha = await _captchaRepository.GetByIdAsync(captchaIds[currentIndex]);
             bool isCorrect = string.Equals(answer, captcha.CaptchaValue);
 
-            _httpContextAccessor.HttpContext?.Session.SetInt32($"Captcha_{sessionId}_{currentIndex}", isCorrect ? 1 : 0);
+            if (!_captchaAnswers.TryGetValue(sessionId, out var answerMap))
+            {
+                answerMap = new Dictionary<int, bool>();
+                _captchaAnswers[sessionId] = answerMap;
+            }
+
+            answerMap[currentIndex] = isCorrect;
 
             bool isComplete = currentIndex + 1 >= captchaIds.Count;
             if (isComplete)
             {
-                int score = 0;
-                for (int i = 0; i < captchaIds.Count; i++)
-                {
-                    score += _httpContextAccessor.HttpContext?.Session.GetInt32($"Captcha_{sessionId}_{i}") ?? 0;
-                }
-
+                int score = answerMap.Count(kvp => kvp.Value);
 
                 await _sessionRepository.CompleteSession(sessionId, score);
                 _sessionCaptchas.TryRemove(sessionId, out _);
+                _captchaAnswers.TryRemove(sessionId, out _);
             }
 
             return (isCorrect, isComplete);
         }
-
 
         public async Task<ResultViewModel> GetResult(int sessionId)
         {
@@ -135,17 +134,7 @@ namespace MVCaptcha.Services.CaptchaService
         public async Task<bool> IsCompleted(int sessionId)
         {
             var session = await _sessionRepository.GetByIdAsync(sessionId);
-
-            if (session.DateTimeEnded == null)
-            {
-                // Session is not completed yet
-                return false;
-            }
-            else
-            {
-                // Session is completed
-                return true;
-            }
+            return session?.DateTimeEnded != null;
         }
 
         public async Task<Session> GetSessionId(int sessionId)
@@ -154,13 +143,10 @@ namespace MVCaptcha.Services.CaptchaService
             {
                 return await _sessionRepository.GetByIdAsync(sessionId);
             }
-            catch (Exception)
+            catch
             {
                 return null;
             }
         }
-
-
     }
-
 }
