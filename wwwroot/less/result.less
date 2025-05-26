@@ -1,11 +1,29 @@
 @import "variables.less";
 @import "mixins.less";
 
-// npx lessc wwwroot/less/result.less wwwroot/css/result.css
+
+//npx lessc wwwroot/less/result.less wwwroot/css/result.css
+// Ensure full height context
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+// Create a flexbox wrapper for vertical centering
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: @background-color; // optional
+}
 
 .result-container {
     .card-mixin();
     text-align: center;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
 
     h1 {
         font-size: 1.5rem;
@@ -21,7 +39,6 @@
         margin: 1.5rem 0;
         line-height: 1;
 
-        // Dynamic color based on score
         .low-score & {
             color: @error-color;
         }

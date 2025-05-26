@@ -1,3 +1,14 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+}
 .result-container {
   background: #fff;
   border: 1px solid #eaeaea;
@@ -6,6 +17,10 @@
   max-width: 480px;
   margin: 3rem auto;
   text-align: center;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
 }
 .result-container h1 {
   font-size: 1.5rem;

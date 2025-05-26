@@ -6,7 +6,7 @@
 
         public ApiException(string message,
                             int statusCode = 500,
-                            Exception innerException = null)
+                            Exception? innerException = null)
             : base(message, innerException)
         {
             StatusCode = statusCode;

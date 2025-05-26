@@ -1,6 +1,5 @@
 wwwroot\css\captcha.css
 wwwroot\css\error.css
-wwwroot\css\result.css
 wwwroot\css\welcome.css
 wwwroot\favicon.ico
 wwwroot\image\captcha\easy1.png
@@ -12,11 +11,12 @@ wwwroot\image\captcha\hard3.png
 wwwroot\image\captcha\normal1.png
 wwwroot\image\captcha\normal2.png
 wwwroot\image\captcha\normal3.png
+wwwroot\js\captcha.js
 wwwroot\js\result.js
+wwwroot\js\welcome.js
 wwwroot\less\captcha.less
 wwwroot\less\error.less
 wwwroot\less\mixins.less
-wwwroot\less\result.less
 wwwroot\less\variables.less
 wwwroot\less\welcome.less
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
@@ -76,5 +76,5 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\js\captcha.js
-wwwroot\js\welcome.js
+wwwroot\css\result.css
+wwwroot\less\result.less

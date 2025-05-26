@@ -22,7 +22,7 @@ namespace MVCaptcha.Controllers
                 return RedirectToAction("Index", "Welcome");
             }
 
-            if (await(_captchaService.IsCompleted(sessionId)))
+            if (await (_captchaService.IsCompleted(sessionId)))
             {
                 // Redirect to result page if session is already completed
                 return RedirectToAction("Index", "Result", new { sessionId });
