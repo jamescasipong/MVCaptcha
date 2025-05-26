@@ -1,27 +1,28 @@
-﻿
+﻿$(document).ready(function () {
+    const $options = $('.difficulty-option');
+    const $selectedInput = $('#selectedDifficulty');
 
-document.addEventListener('DOMContentLoaded', function () {
-    const options = document.querySelectorAll('.difficulty-option');
-    const selectedInput = document.getElementById('selectedDifficulty');
-
-    options.forEach(option => {
-        if (option.dataset.value === (selectedInput.value || 'E')) {
-            option.classList.add('active');
+    // Set initial active class
+    $options.each(function () {
+        if ($(this).data('value') === ($selectedInput.val() || 'E')) {
+            $(this).addClass('active');
         }
-
-        option.addEventListener('click', function () {
-            options.forEach(opt => opt.classList.remove('active'));
-            this.classList.add('active');
-            selectedInput.value = this.dataset.value;
-
-            // Animation
-            this.style.transform = 'translateY(-5px)';
-            setTimeout(() => this.style.transform = '', 300);
-        });
     });
 
-    document.querySelector('form').addEventListener('submit', function (e) {
-        if (!selectedInput.value) {
+    // Handle option click
+    $options.on('click', function () {
+        $options.removeClass('active');
+        $(this).addClass('active');
+        $selectedInput.val($(this).data('value'));
+
+        // Animation
+        $(this).css('transform', 'translateY(-5px)');
+        setTimeout(() => $(this).css('transform', ''), 300);
+    });
+
+    // Validate on form submit
+    $('form').on('submit', function (e) {
+        if (!$selectedInput.val()) {
             e.preventDefault();
             alert('Please select a difficulty level');
         }

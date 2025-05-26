@@ -1,30 +1,30 @@
-﻿
+﻿$(document).ready(function () {
+    const $input = $('.captcha-input');
+    const $form = $('#captchaForm');
+    const $submitBtn = $('.submit-btn');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const input = document.querySelector('.captcha-input');
-    const form = document.getElementById('captchaForm');
-    const submitBtn = document.querySelector('.submit-btn');
+    const answerLength = parseInt($input.data('answerLength'), 10);
 
-    const answerLength = parseInt(input.dataset.answerLength, 10);
+    $input.focus();
 
-    input.focus();
-    input.addEventListener('input', (e) => {
-        e.target.value = e.target.value.replace(/[^A-Za-z0-9]/g, '');
-        submitBtn.disabled = e.target.value.length < answerLength;
+    $input.on('input', function () {
+        const sanitized = this.value.replace(/[^A-Za-z0-9]/g, '');
+        this.value = sanitized;
+        $submitBtn.prop('disabled', sanitized.length < answerLength);
     });
 
-    form.addEventListener('submit', (e) => {
-        if (input.value.length < answerLength) {
+    $form.on('submit', function (e) {
+        if ($input.val().length < answerLength) {
             e.preventDefault();
-            input.classList.add('error');
+            $input.addClass('error');
         }
     });
 
-    input.addEventListener('blur', () => {
-        if (input.value.length < answerLength) {
-            input.classList.add('error');
+    $input.on('blur', function () {
+        if ($input.val().length < answerLength) {
+            $input.addClass('error');
         } else {
-            input.classList.remove('error');
+            $input.removeClass('error');
         }
     });
 });

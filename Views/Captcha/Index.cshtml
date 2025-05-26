@@ -23,11 +23,9 @@
 
             <div class="input-group">
                 <label for="Answer" class="captcha-label">Enter code</label>
-                <input asp-for="Answer" id="Answer" class="captcha-input"
-                       data-answer-length="@Model.AnswerLength"
-                       placeholder="@(new string('-', Model.AnswerLength))"
-                       maxlength="@Model.AnswerLength"
-                       autocomplete="off" spellcheck="false" />
+                <input asp-for="Answer" id="Answer" class="captcha-input" data-answer-length="@Model.AnswerLength"
+                    placeholder="@(new string('-', Model.AnswerLength))" maxlength="@Model.AnswerLength"
+                    autocomplete="off" spellcheck="false" />
                 <span asp-validation-for="Answer" class="error-message"></span>
             </div>
 
