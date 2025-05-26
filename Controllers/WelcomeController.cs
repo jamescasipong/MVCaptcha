@@ -10,12 +10,10 @@ namespace MVCaptcha.Controllers
 {
     public class WelcomeController : Controller
     {
-        private readonly ILogger<WelcomeController> _logger;
         private readonly ICaptchaService _captchaService;
 
         public WelcomeController(ILogger<WelcomeController> logger, ICaptchaService captchaService)
         {
-            _logger = logger;
             _captchaService = captchaService;
         }
 

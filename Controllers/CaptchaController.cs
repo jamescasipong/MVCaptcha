@@ -34,6 +34,7 @@ namespace MVCaptcha.Controllers
             }
 
             var session = await _captchaService.GetSessionId(sessionId);
+
             if (session == null)
             {
                 return RedirectToAction("Index", "Welcome");
