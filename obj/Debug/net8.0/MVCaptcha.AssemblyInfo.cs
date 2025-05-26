@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MVCaptcha")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e052631f440d705d079d939d9df49340896ac14f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db2468bcbf6f571aa7dbcdcfd9c6f2d73368a9bc")]
 [assembly: System.Reflection.AssemblyProductAttribute("MVCaptcha")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MVCaptcha")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -4,39 +4,52 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MVCaptcha.Configs;
+using Microsoft.Extensions.Logging;
 
 namespace MVCaptcha.Services
 {
     public class TokenService : ITokenService
     {
         private readonly JwtSettings _jwtSettings;
+        private readonly ILogger<TokenService> _logger;
 
-        public TokenService(IOptions<JwtSettings> jwtSettings)
+        public TokenService(IOptions<JwtSettings> jwtSettings, ILogger<TokenService> logger)
         {
             _jwtSettings = jwtSettings.Value;
+            _logger = logger;
         }
 
         public string GenerateToken(int sessionId, int currentIndex)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var claims = new[]
+            try
             {
-                new Claim("sessionId", sessionId.ToString()),
-                new Claim("currentIndex", currentIndex.ToString()),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var token = new JwtSecurityToken(
-                issuer: _jwtSettings.Issuer,
-                audience: _jwtSettings.Audience,
-                claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(_jwtSettings.ExpirationMinutes),
-                signingCredentials: creds
-            );
+                var claims = new[]
+                {
+                    new Claim("sessionId", sessionId.ToString()),
+                    new Claim("currentIndex", currentIndex.ToString()),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                };
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+                var token = new JwtSecurityToken(
+                    issuer: _jwtSettings.Issuer,
+                    audience: _jwtSettings.Audience,
+                    claims: claims,
+                    expires: DateTime.UtcNow.AddMinutes(_jwtSettings.ExpirationMinutes),
+                    signingCredentials: creds
+                );
+
+                string jwt = new JwtSecurityTokenHandler().WriteToken(token);
+                _logger.LogInformation("Generated token for session {SessionId} at index {CurrentIndex}", sessionId, currentIndex);
+                return jwt;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to generate token for session {SessionId}", sessionId);
+                throw;
+            }
         }
 
         public bool ValidateToken(string token, out int sessionId, out int currentIndex)
@@ -65,13 +78,14 @@ namespace MVCaptcha.Services
                 sessionId = int.Parse(principal.FindFirst("sessionId")?.Value ?? "0");
                 currentIndex = int.Parse(principal.FindFirst("currentIndex")?.Value ?? "0");
 
+                _logger.LogDebug("Validated token for session {SessionId} at index {CurrentIndex}", sessionId, currentIndex);
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogWarning(ex, "Token validation failed.");
                 return false;
             }
         }
-
     }
 }
